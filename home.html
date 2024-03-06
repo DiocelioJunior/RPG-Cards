@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+        #card-container {
+            max-width: 400px; /* Defina a largura máxima do card conforme necessário */
+            margin: 0 auto; /* Centraliza o card na tela */
+            padding: 20px; /* Adiciona algum espaço interno ao redor do card */
+            border: 1px solid #ccc; /* Adiciona uma borda ao redor do card */
+            border-radius: 8px; /* Adiciona bordas arredondadas ao card */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave ao card */
+        }
+
+        #info-container {
+            /* Estilos específicos para o conteúdo dentro do card, se necessário */
+        }
+
+        /* Adicione mais estilos conforme necessário */
+    </style>
+</head>
+<body>
+    <div id="card-container">
+        <div id="info-container">
+            <!-- As informações do personagem serão exibidas aqui -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Recupera as informações do personagem do localStorage
+            const selectedPersonagem = JSON.parse(localStorage.getItem('selectedPersonagem'));
+
+            // Verifica se as informações do personagem existem no localStorage
+            if (selectedPersonagem) {
+                // Atualiza o conteúdo da div com as informações do personagem
+                updateInfo(selectedPersonagem);
+            } else {
+                console.log('Nenhuma informação do personagem encontrada no localStorage.');
+            }
+        });
+
+        function updateInfo(personagem) {
+            // Obtém o elemento da div onde as informações serão exibidas
+            const infoContainer = document.getElementById('info-container');
+
+            // Cria elementos HTML para exibir as informações do personagem
+            const nomeElement = document.createElement('h2');
+            const racaElement = document.createElement('p');
+            const classeElement = document.createElement('p');
+            // Adicione mais elementos conforme necessário
+
+            // Define o conteúdo dos elementos com as informações do personagem
+            nomeElement.textContent = `Nome: ${personagem.nome}`;
+            racaElement.textContent = `Raça: ${personagem.raca}`;
+            classeElement.textContent = `Classe: ${personagem.classe}`;
+            // Atualize conforme necessário para incluir mais informações
+
+            // Limpa o conteúdo existente da div
+            infoContainer.innerHTML = '';
+
+            // Adiciona os elementos à div
+            infoContainer.appendChild(nomeElement);
+            infoContainer.appendChild(racaElement);
+            infoContainer.appendChild(classeElement);
+            // Adicione mais elementos conforme necessário
+        }
+    </script>
+</body>
+</html>

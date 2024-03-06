@@ -87,19 +87,32 @@ card3.addEventListener("click", function (event) {
 });
 
 function selectedCard(event, cardNumber) {
+    let selectedPersonagem;
+
     switch (cardNumber) {
         case 1:
-            console.log(personagens[0]);
+            selectedPersonagem = personagens[0];
             break;
         case 2:
-            console.log(personagens[1]);
+            selectedPersonagem = personagens[1];
             break;
         case 3:
-            console.log(personagens[2]);
+            selectedPersonagem = personagens[2];
             break;
         default:
             break;
     }
+
+    // Verifica se o localStorage é suportado no navegador
+    if (typeof(Storage) !== "undefined") {
+        // Armazena as informações do personagem no localStorage
+        localStorage.setItem('selectedPersonagem', JSON.stringify(selectedPersonagem));
+    } else {
+        console.log('LocalStorage não suportado no navegador.');
+    }
+
+    // Redireciona para a página home.html
+    window.location.href = 'home.html';
 }
 
 // Adicionando ouvintes de eventos de clique para os botões de próxima e anterior
